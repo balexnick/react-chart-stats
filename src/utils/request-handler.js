@@ -1,10 +1,9 @@
 import axios from "axios";
 import qs from "qs";
-import { store } from 'index'
-import * as CONSTANT from 'constant'
+// import { store } from 'index'
+// import * as CONSTANT from 'constant'
 
 export const requestHandler = ({options, cb, failCb}) => {
-  console.log('----', process)
   let axiosOptions = {
     url: 'https://stat.ebash.team/api/' + options.url,
     method: options.type,
@@ -26,14 +25,14 @@ export const requestHandler = ({options, cb, failCb}) => {
     default:
       break;
   }
-  store.dispatch({ type: CONSTANT.LOADER, payload: true })
+  // store.dispatch({ type: CONSTANT.LOADER, payload: true })
   return axios(axiosOptions)
-    .then(res => {
-      if (typeof cb === 'function') cb(res)
-      store.dispatch({ type: CONSTANT.LOADER, payload: false })
-    })
-    .catch(function (err) {
-      console.log(err.response)
-      store.dispatch({ type: CONSTANT.LOADER, payload: false })
-    })
+    // .then(res => {
+    //   if (typeof cb === 'function') cb(res)
+    //   store.dispatch({ type: CONSTANT.LOADER, payload: false })
+    // })
+    // .catch(function (err) {
+    //   console.log(err.response)
+    //   store.dispatch({ type: CONSTANT.LOADER, payload: false })
+    // })
 };

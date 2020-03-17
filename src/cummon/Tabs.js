@@ -25,7 +25,10 @@ const Tab = styled.li`
   transition: all 0.3s ease;
   border-bottom: 2px solid transparent;
   border-color: ${({isActive}) => isActive ? '#819ca9' : 'transparent'};
+  font-weight: ${({isActive}) => isActive && 'bold'};
+  width: 100px;
   &:hover{
     border-color: #819ca9;
+    font-weight: bold;
   }
 `

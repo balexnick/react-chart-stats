@@ -4,19 +4,24 @@ import styled from 'styled-components'
 
 import { browserHistory } from "index";
 import Today from 'components/today/Today'
+import Loader from 'components/loader/Loader'
 import Yesterday from 'components/yesterday/Yesterday'
 import LastWeek from 'components/last-week/LastWeek'
 import LastMonth from 'components/last-month/LastMoth'
+import ThisMonth from 'components/this-month/ThisMonth'
 import Traffic from 'components/traffic/Traffic'
 import Tab from 'cummon/Tabs'
+
+import TotalRevenue from 'components/total-stats/TotalRevenue'
 
 const TODAY = '/today';
 const YESTERDAY = '/yesterday';
 const LASTWEEK = '/last-week';
 const LASTMONTH = '/last-month';
+const THISMONTH = '/this-month'
 const TRAFFIC = '/traffic';
 
-const CONTENT_LIST = [TODAY, YESTERDAY, LASTWEEK, LASTMONTH, TRAFFIC]
+const CONTENT_LIST = [TODAY, YESTERDAY, LASTWEEK, LASTMONTH, THISMONTH, TRAFFIC]
 
 const HomePage = ({match}) => {
   const hasContent = CONTENT_LIST.includes(match.url);
@@ -25,10 +30,11 @@ const HomePage = ({match}) => {
     [YESTERDAY]: <Yesterday />,
     [LASTWEEK]: <LastWeek />,
     [LASTMONTH]: <LastMonth />,
+    [THISMONTH]: <ThisMonth />,
     [TRAFFIC]: <Traffic />,
   };
   return (
-    <div>
+    <Container>
       <TabList>
         <Tab 
           text={'Today'}
@@ -41,14 +47,19 @@ const HomePage = ({match}) => {
           isActive={match.url === YESTERDAY}
         />
         <Tab 
-          text={'Last week'}
+          text={'Last 7 days'}
           setClick={() => browserHistory.push('/last-week')}
           isActive={match.url === LASTWEEK}
         />
         <Tab 
-          text={'Last month'}
+          text={'Last 30 days'}
           setClick={() => browserHistory.push('/last-month')}
           isActive={match.url === LASTMONTH}
+        />
+        <Tab 
+          text={'This month'}
+          setClick={() => browserHistory.push('/this-month')}
+          isActive={match.url === THISMONTH}
         />
         <Tab 
           text={'Traffic'}
@@ -56,17 +67,23 @@ const HomePage = ({match}) => {
           isActive={match.url === TRAFFIC}
         />
       </TabList>
+      <TotalRevenue/>
+
       {hasContent && content[match.url]}
-    </div>
+      <Loader/>
+    </Container>
   )
 }
 
 export default withRouter(HomePage)
 
+
+const Container = styled.div`
+  padding: 15px;
+`
 const TabList = styled.ul`
   display: flex;
   border-bottom: 1px solid #cfcfcf;
-  display: flex;
   align-items: center;
   align-self: flex-end;
   justify-content: flex-start;

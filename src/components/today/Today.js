@@ -1,31 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getTodayStat } from 'actions/get-stats'
-import PropTypes from "prop-types";
+import { getTotalRevenue } from 'actions/get-stats'
+import PropTypes from 'prop-types'
 
-const Today = ({getToday}) => {
+import CustomHighcharts from 'components/highcharts/CustomHighcharts'
+const Today = ({getTotal}) => {
   React.useEffect(() => {
-    getToday()
-  }, [getToday])
+    getTotal()
+  }, [getTotal])
   return (
     <div>
-      today
+      <CustomHighcharts/>
     </div>
   )
 }
 
-const mapStateToProps = state => {
-  return {state}
-}
-
-const mapDispatchtoProps = dispatch => {
-  return {
-    getToday: () => dispatch(getTodayStat())
+const mapDispatchToProps = dispatch => {
+  return{
+    getTotal: () => dispatch(getTotalRevenue())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(Today)
-
 Today.propTypes = {
-  getToday: PropTypes.func.isRequired
-};
+  getTotal: PropTypes.func.isRequired,
+}
+
+export default connect(null, mapDispatchToProps)(Today)
+
+
+
