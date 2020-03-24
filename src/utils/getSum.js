@@ -1,3 +1,19 @@
+export const calculateAllDomainsData = (domainsData) => {
+  let revenue = 0;
+  let impressions = 0;
+  let clicks = 0;
+  Object.keys(domainsData).forEach(function(domain) {
+    revenue += domainsData[domain].revenue;
+    impressions += domainsData[domain].impressions;
+    clicks += domainsData[domain].clicks;
+  });
+  return {
+    revenue,
+    impressions,
+    clicks
+  }
+}
+
 export const calculateTotalRevenueForDomains = (domainsData) => {
   var totalRevenue = 0;
   Object.keys(domainsData).forEach(function(domain) {

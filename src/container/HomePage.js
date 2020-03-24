@@ -67,6 +67,7 @@ const HomePage = ({match}) => {
           isActive={match.url === TRAFFIC}
         />
       </TabList>
+      
       <TotalRevenue/>
 
       {hasContent && content[match.url]}

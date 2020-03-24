@@ -1,6 +1,7 @@
 import {requestHandler} from 'utils/request-handler'
 import * as CONSTANT from 'constant'
 import { getSumOfMetricsByDomains, calculateTotalRevenueForDomains } from 'utils/getSum'
+
 export const getTodayStat = () => {
   const options = {
     type: "get",
@@ -16,19 +17,6 @@ export const getThisMonthStat = () => {
   };
   return requestHandler({options})
 }
-
-// export const getYesterdayStat = () => {
-//   return dispatch => {
-//     const options = {
-//       type: "get",
-//       url: `stat/hours/1`
-//     };
-//     const cb =  (response) => {
-//       console.log('1', response)
-//     }
-//     requestHandler({options, cb})
-//   }
-// }
 
 export const getTotalRevenue = () => {
   return dispatch => {
@@ -51,5 +39,4 @@ export const getTotalRevenue = () => {
       })
   }
 }
-
 
