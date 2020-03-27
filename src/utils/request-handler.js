@@ -5,7 +5,7 @@ import qs from "qs";
 
 export const requestHandler = ({options, cb, failCb}) => {
   let axiosOptions = {
-    url: 'https://stat.ebash.team/api/' + options.url,
+    url: 'https://picstat.ebash.team/api/' + options.url,
     method: options.type,
     headers: {
       "Content-Type": "application/json",

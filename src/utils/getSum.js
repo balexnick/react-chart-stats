@@ -8,7 +8,7 @@ export const calculateAllDomainsData = (domainsData) => {
     clicks += domainsData[domain].clicks;
   });
   return {
-    revenue,
+    revenue: `$${revenue}`,
     impressions,
     clicks
   }

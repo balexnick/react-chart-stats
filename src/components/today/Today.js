@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import ChartsContainer from 'containers/ChartsContainer'
 import { getTotalRevenue } from 'actions/get-total-revenue'
 import { getTotalChartStatsForToday } from 'actions/get-today-chart-stats'
-import { Title } from 'common/styled'
 import CustomHighcharts from 'components/highcharts/CustomHighcharts'
 import * as CONSTANT from 'constant'
 
@@ -14,10 +14,9 @@ const Today = ({getTotal, getTodayCharts }) => {
     getTodayCharts()
   }, [getTotal,getTodayCharts])
   return (
-    <div>
-      <Title>All Domains</Title>
+    <ChartsContainer>
       <CustomHighcharts/>
-    </div>
+    </ChartsContainer>
   )
 }
 

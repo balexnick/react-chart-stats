@@ -68,8 +68,7 @@ const HomePage = ({match}) => {
         />
       </TabList>
       
-      <TotalRevenue/>
-
+      {match.url !== TRAFFIC && <TotalRevenue/>}
       {hasContent && content[match.url]}
       <Loader/>
     </Container>

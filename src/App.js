@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from "react-router";
 
-import HomePage from 'container/HomePage'
+import HomePage from 'containers/HomePage'
 
 const App = () => {
   return (
