@@ -1,11 +1,33 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-const LastWeek = () => {
+import ChartsContainer from 'containers/ChartsContainer'
+import { getLastWeekStat } from 'actions/get-last-week'
+
+const Today = ({ getLastWeekStatData }) => {
+  React.useEffect(() => {
+    getLastWeekStatData()
+  }, [getLastWeekStatData])
+
   return (
     <div>
-      LastWeek
+      <ChartsContainer />
     </div>
   )
 }
 
-export default LastWeek
+const mapDispatchToProps = dispatch => {
+  return {
+    getLastWeekStatData: () => dispatch(getLastWeekStat()),
+  }
+}
+
+Today.propTypes = {
+  getLastWeekStatData: PropTypes.func.isRequired,
+}
+
+export default connect(null, mapDispatchToProps)(Today)
+
+
+

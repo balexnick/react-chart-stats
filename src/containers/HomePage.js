@@ -12,7 +12,7 @@ import ThisMonth from 'components/this-month/ThisMonth'
 import Traffic from 'components/traffic/Traffic'
 import Tab from 'cummon/Tabs'
 
-import TotalRevenue from 'components/total-stats/TotalRevenue'
+// import TotalRevenue from 'components/stotal-stats/TotalRevenue'
 
 const TODAY = '/today';
 const YESTERDAY = '/yesterday';
@@ -68,7 +68,7 @@ const HomePage = ({match}) => {
         />
       </TabList>
       
-      {match.url !== TRAFFIC && <TotalRevenue/>}
+      {/* {match.url !== TRAFFIC && <TotalRevenue/>} */}
       {hasContent && content[match.url]}
       <Loader/>
     </Container>

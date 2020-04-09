@@ -5,38 +5,35 @@ import PropTypes from 'prop-types'
 import ChartsContainer from 'containers/ChartsContainer'
 import { getTotalRevenue } from 'actions/get-total-revenue'
 import { getTotalChartStatsForToday } from 'actions/get-today-chart-stats'
-import CustomHighcharts from 'components/highcharts/CustomHighcharts'
-import * as CONSTANT from 'constant'
+import TotalRevenue from 'components/total-stats/TotalRevenue'
 
-const Today = ({getTotal, getTodayCharts }) => {
+const Today = ({ getTotal, getTodayCharts }) => {
   React.useEffect(() => {
     getTotal()
     getTodayCharts()
-  }, [getTotal,getTodayCharts])
+  }, [getTotal, getTodayCharts])
+
   return (
-    <ChartsContainer>
-      <CustomHighcharts/>
-    </ChartsContainer>
+    <div>
+      <TotalRevenue/>
+      <ChartsContainer />
+    </div>
   )
 }
 
 const mapDispatchToProps = dispatch => {
-  return{
+  return {
     getTotal: () => dispatch(getTotalRevenue()),
     getTodayCharts: () => dispatch(getTotalChartStatsForToday()),
   }
 }
 
-const mapStateToProps = store => {
-  const stats = store[CONSTANT.TOTAL_REVENUE_STAT]
-  return {stats}
-}
-
 Today.propTypes = {
   getTotal: PropTypes.func.isRequired,
+  getTodayCharts: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Today)
+export default connect(null, mapDispatchToProps)(Today)
 
 
 

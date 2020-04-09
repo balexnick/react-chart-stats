@@ -43,7 +43,7 @@ const StatContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 25px;
 `
 
 const Spiner = styled.img`

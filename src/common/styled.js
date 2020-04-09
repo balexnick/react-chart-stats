@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const BorderContainer = styled.div`
-  padding: 15px 18px;
   width: 32%;
   margin: 0;
   border: 1px solid #e5e5e5;
@@ -34,4 +33,33 @@ export const Title = styled.h3`
   text-align: center;
   width: 100%;
   text-transform: capitalize;
+`
+
+export const TableValue = styled.div`
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	box-sizing: border-box;
+	flex-grow: ${({ flex }) => flex};
+	width: ${({ width }) => width ? width : '30%'};
+	justify-content: ${({ align }) => align ? 'center' : 'flex-start'};
+	padding: 5px;
+	font-size: 16px;
+	color: ${({ color }) => color};
+	font-weight: ${({ fontWeight }) => fontWeight};
+	display: flex;
+	align-items: center;
+	@media(max-width:768px){
+		font-size: ${({ fontSize }) => fontSize && fontSize};
+	}
+	@media(max-width:525px){
+		font-size: ${({ fontSize }) => fontSize ? fontSize : '8px'};
+	}
+`;
+
+export const Arrow = styled.button`
+	outline: none;
+	border: none;
+	background: transparent;
+	font-size: 20px;
+	cursor: pointer;
 `

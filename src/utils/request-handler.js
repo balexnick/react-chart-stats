@@ -3,9 +3,9 @@ import qs from "qs";
 // import { store } from 'index'
 // import * as CONSTANT from 'constant'
 
-export const requestHandler = ({options, cb, failCb}) => {
+export const requestHandler = ({ options, cb, failCb }) => {
   let axiosOptions = {
-    url: 'https://picstat.ebash.team/api/' + options.url,
+    url: 'https://stat.ebash.team/api/' + options.url,
     method: options.type,
     headers: {
       "Content-Type": "application/json",
@@ -27,12 +27,12 @@ export const requestHandler = ({options, cb, failCb}) => {
   }
   // store.dispatch({ type: CONSTANT.LOADER, payload: true })
   return axios(axiosOptions)
-    // .then(res => {
-    //   if (typeof cb === 'function') cb(res)
-    //   store.dispatch({ type: CONSTANT.LOADER, payload: false })
-    // })
-    // .catch(function (err) {
-    //   console.log(err.response)
-    //   store.dispatch({ type: CONSTANT.LOADER, payload: false })
-    // })
+  // .then(res => {
+  //   if (typeof cb === 'function') cb(res)
+  //   store.dispatch({ type: CONSTANT.LOADER, payload: false })
+  // })
+  // .catch(function (err) {
+  //   console.log(err.response)
+  //   store.dispatch({ type: CONSTANT.LOADER, payload: false })
+  // })
 };

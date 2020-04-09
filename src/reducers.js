@@ -3,15 +3,19 @@ export const initialState = {
   [CONSTANT.LOADER]: false,
   [CONSTANT.TOTAL_REVENUE_STAT]: {},
   [CONSTANT.GIF_LOADER]: false,
-  [CONSTANT.CHART_DATA_SUM]: {}
+  [CONSTANT.CHART_DATA_SUM]: null,
+  [CONSTANT.DOMAIN_DATA]: null,
+
+  [CONSTANT.DEFAULT_TRAFFIC]: null,
+  [CONSTANT.CHART_TRAFFIC]: null
 };
 
 export function rootReduser(state = initialState, action) {
-  switch(action.type){
+  switch (action.type) {
     case CONSTANT.LOADER:
-			return {
-				...state,
-				[CONSTANT.LOADER]: action.payload
+      return {
+        ...state,
+        [CONSTANT.LOADER]: action.payload
       }
     case CONSTANT.TOTAL_REVENUE_STAT:
       return {
@@ -27,8 +31,26 @@ export function rootReduser(state = initialState, action) {
       return {
         ...state,
         [CONSTANT.CHART_DATA_SUM]: action.payload
-      } 
-  default:
+      }
+    case CONSTANT.DOMAIN_DATA:
+      return {
+        ...state,
+        [CONSTANT.DOMAIN_DATA]: action.payload
+      }
+
+      
+    case CONSTANT.DEFAULT_TRAFFIC:
+			return {
+				...state,
+				[CONSTANT.DEFAULT_TRAFFIC]: action.payload
+      }
+    
+    case CONSTANT.CHART_TRAFFIC:
+      return {
+        ...state,
+        [CONSTANT.CHART_TRAFFIC]: action.payload
+      }
+    default:
       return state;
   }
 }

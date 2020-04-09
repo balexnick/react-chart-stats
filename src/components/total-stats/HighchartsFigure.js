@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 // import PropTypes from 'prop-types'
-import {BorderContainer} from 'common/styled'
+import { BorderContainer } from 'common/styled'
 
-const HighchartsFigure = ({label, value, children}) => {
+const HighchartsFigure = ({ label, value, children }) => {
   return (
-    <BorderContainer>
+    <BorderContainer style={{ padding: '15px 18px' }}>
       {children}
       <CustomLabel>{label}</CustomLabel>
       <CustomValue>{value}</CustomValue>

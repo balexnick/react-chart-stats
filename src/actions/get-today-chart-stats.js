@@ -1,48 +1,78 @@
-import {requestHandler} from 'utils/request-handler'
+import { requestHandler } from 'utils/request-handler'
 import * as CONSTANT from 'constant'
 import { getSumOfMetricsByDomains, calculateAllDomainsData } from 'utils/getSum'
-import { getChartDataSum } from 'utils/getChartDataSum'
+import { getChartDataByDomain } from 'utils/getChartDataByDomain'
+import { getParcedData } from 'utils/getParcedData'
 
-export const getTodayStat = () => {
+const setBalance = (array) => {
+  if (array.length !== 24) {
+    array.push({hour: 0, impressions: 0, clicks: 0, revenue: 0})
+    return setBalance(array)
+  }
+  return array
+}
+
+export const getCurrentStat = () => {
   const options = {
     type: "get",
     url: `stat/hours/0`
   };
-  return requestHandler({options})
+  return requestHandler({ options })
 }
 
-export const getYesterdayStat = () => {
+export const getPrevStat = () => {
   const options = {
     type: "get",
     url: `stat/hours/1`
   };
-  return requestHandler({options})
+  return requestHandler({ options })
 }
 
 export const getTotalChartStatsForToday = () => {
   return dispatch => {
-    dispatch({ type: CONSTANT.LOADER, payload: true})
-    Promise.all([getTodayStat(), getYesterdayStat()])
+    dispatch({ type: CONSTANT.LOADER, payload: true })
+    Promise.all([getCurrentStat(), getPrevStat()])
       .then((response) => {
-        let todayMetricsByDomain = getSumOfMetricsByDomains(response[0].data.result.data);
-        let totalRevenueForToday = calculateAllDomainsData(todayMetricsByDomain);
-        let todayChartDataSum = getSumOfMetricsByDomains(getChartDataSum(response[0].data.result.data))
-        let yestardayChartDataSum = getSumOfMetricsByDomains(getChartDataSum(response[1].data.result.data))
+        let currentMetricsByDomain = getSumOfMetricsByDomains(response[0].data.result.data);
+        let totalRevenueForCurrent = calculateAllDomainsData(currentMetricsByDomain);
+        let currentChartDataSum = getSumOfMetricsByDomains(getChartDataByDomain(response[0].data.result.data))
+        let prevChartDataSum = getSumOfMetricsByDomains(getChartDataByDomain(response[1].data.result.data))
+        let array = [response[0].data.result.data, response[1].data.result.data]
+        let arrayData = getParcedData(array)
 
+        let domainData = Object.keys(arrayData).map(item => {
+          return {
+            domain: item,
+            total: currentMetricsByDomain[item],
+            stats: {
+              current: {
+                datefrom: response[0].data.result.datefrom,
+                data: setBalance(arrayData[item][0])
+              },
+              prev: {
+                datefrom: response[1].data.result.datefrom,
+                data: arrayData[item][1]
+              }
+            }
+          }
+        })
         let obj = {
-          total: totalRevenueForToday,
-          today: {
-            datefrom: response[0].data.result.datefrom,
-            data: todayChartDataSum
-          },
-          yestarday: {
-            datefrom: response[1].data.result.datefrom,
-            data: yestardayChartDataSum
+          total: totalRevenueForCurrent,
+          stats: {
+            current: {
+              datefrom: response[0].data.result.datefrom,
+              data: setBalance(Object.keys(currentChartDataSum).map(item => currentChartDataSum[item]))
+            },
+            prev: {
+              datefrom: response[1].data.result.datefrom,
+              data: Object.keys(prevChartDataSum).map(item => prevChartDataSum[item])
+            }
           }
         }
-        console.log(obj)
-        dispatch({ type: CONSTANT.LOADER, payload: false})
+        dispatch({ type: CONSTANT.LOADER, payload: false })
         dispatch({ type: CONSTANT.CHART_DATA_SUM, payload: obj })
+        dispatch({ type: CONSTANT.DOMAIN_DATA, payload: domainData })
       })
   }
 }
+

@@ -2,13 +2,13 @@ export const calculateAllDomainsData = (domainsData) => {
   let revenue = 0;
   let impressions = 0;
   let clicks = 0;
-  Object.keys(domainsData).forEach(function(domain) {
+  Object.keys(domainsData).forEach(function (domain) {
     revenue += domainsData[domain].revenue;
     impressions += domainsData[domain].impressions;
     clicks += domainsData[domain].clicks;
   });
   return {
-    revenue: `$${revenue}`,
+    revenue: revenue.toFixed(2),
     impressions,
     clicks
   }
@@ -16,7 +16,7 @@ export const calculateAllDomainsData = (domainsData) => {
 
 export const calculateTotalRevenueForDomains = (domainsData) => {
   var totalRevenue = 0;
-  Object.keys(domainsData).forEach(function(domain) {
+  Object.keys(domainsData).forEach(function (domain) {
     totalRevenue += domainsData[domain].revenue;
   });
 
@@ -46,7 +46,7 @@ export const getSumOfMetricsByDomains = (domainsMetricsSummary) => {
         clicks: Number.isInteger(clicks)
           ? clicks
           : +(Math.round(clicks * 100) / 100).toFixed(2)
-      }
+      }, 
     }
   })
   return result

@@ -1,10 +1,10 @@
-const options = {
+const config = {
   chart: {
     type: "area",
     spacing: [0, 0, 0, 0],
     margin: [60, 0, 0, 0],
     height: 309
-  },  
+  },
   credits: {
     enabled: false
   },
@@ -32,4 +32,4 @@ const options = {
     }
   },
 }
-export default options
+export default config
