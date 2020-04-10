@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,OACE,6BAA+B,CAC/B,qBAAsB,CACtB,QACF","file":"main.41b0cd91.chunk.css","sourcesContent":["body, * {\n  font-family: Roboto, sans-serif;\n  box-sizing: border-box;\n  margin: 0;\n}\n\n"]}
