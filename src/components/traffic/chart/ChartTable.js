@@ -36,6 +36,7 @@ function ChartTable({dataListTable}) {
               <ChartTableRow
                 key={i}
                 flag={item.code}
+                imgAlt={i}
                 country={item.country}
                 traffic={item.traffic}
                 percent={item.percent}

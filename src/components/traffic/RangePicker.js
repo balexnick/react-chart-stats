@@ -37,7 +37,7 @@ function RangePicker({getTrafficFromInputDate, getTrafficChartsFromInputDate}) {
 				onChange={onChangeInDateRangePicker}
 				value={[date[0], date[1]]}
 			/> 
-			<Button onClick={setNewDate}>Submit</Button>
+			<Button onClick={setNewDate} name='submit'>Submit</Button>
 		</div>
 	)
 }
